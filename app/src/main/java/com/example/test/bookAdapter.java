@@ -2,7 +2,9 @@ package com.example.test;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,11 +53,19 @@ public class bookAdapter extends BaseAdapter {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                books.remove(i);
-                notifyDataSetChanged();
-                Toast.makeText(context,
-                        "Deleted",
-                        Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Törlés");
+                builder.setMessage("Biztosan törölni szeretnéd?");
+                builder.setPositiveButton("Igen", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        books.remove(i);
+                        notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton("Nem", null);
+                AlertDialog dialog =builder.create();
+                builder.show();
             }
         });
 
@@ -67,6 +77,7 @@ public class bookAdapter extends BaseAdapter {
                 intent.putExtra("bookauthor", books.get(i).getAuthor());
                 intent.putExtra("bookpages", books.get(i).getPages());
                 context.startActivity(intent);
+
             }
         });
 
