@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private Button hozzaad;
     private ListView list;
     private static List<Book> books;
-    private LinearLayout valami;
 
 
     @Override

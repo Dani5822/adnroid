@@ -56,12 +56,12 @@ public class bookAdapter extends BaseAdapter {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Törlés");
                 builder.setMessage("Biztosan törölni szeretnéd?");
-                builder.setPositiveButton("Igen", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                builder.setPositiveButton("Igen", (dialogInterface, i1) -> {
+
                         books.remove(i);
                         notifyDataSetChanged();
-                    }
+                        Toast.makeText(context, "Sikeres törlés", Toast.LENGTH_SHORT).show();
+
                 });
                 builder.setNegativeButton("Nem", null);
                 AlertDialog dialog =builder.create();
