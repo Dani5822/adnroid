@@ -18,12 +18,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private EditText konyvcim, konyszerzo, oldalszam;
     private Button hozzaad;
     private ListView list;
     private static List<Book> books;
+    Random rand = new Random();
 
 
     @Override
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                books.add(new Book(konyvcim.getText().toString(), konyszerzo.getText().toString(), Integer.parseInt(oldalszam.getText().toString())));
+                books.add(new Book(konyvcim.getText().toString(), konyszerzo.getText().toString(), Integer.parseInt(oldalszam.getText().toString()),rand.nextInt(2024)));
                 konyvcim.setText("");
                 konyszerzo.setText("");
                 oldalszam.setText("");
